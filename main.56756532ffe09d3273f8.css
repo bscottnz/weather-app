@@ -1,3 +1,86 @@
-@import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap);
-*,*::before,*::after{margin:0;padding:0;box-sizing:inherit}html{box-sizing:border-box;font-size:62.5%}body{background-color:#254da5;background-image:linear-gradient(to right, rgba(0,0,0,0.4), rgba(0,0,0,0.4)),url(imgs/bg.045edac4468e3ab87a833664e263f543.jpg);background-size:cover;color:#f5f5f5;font-family:montserrat, sans-serif}li{list-style:none}body{height:100vh;padding:8rem;display:flex;flex-direction:column;justify-content:space-between}main{display:flex;justify-content:space-between}.forecast{display:flex;justify-content:space-between}.weather-info__description{margin-bottom:1rem;font-size:4rem;font-weight:500;line-height:1}.weather-info__city{margin-bottom:2rem;font-size:1.8rem;font-weight:500}.weather-info__temperature{margin-bottom:2rem;font-size:6rem;font-weight:700}.weather-info__change-location{font-size:1.2rem;font-weight:600}.weather-details{margin-bottom:3rem}.weather-details__label{margin-bottom:1rem;font-size:1.2rem;font-weight:500}.weather-details__data{font-size:2.6rem;font-weight:600}.forecast-daily__day{margin-bottom:2rem;font-size:2rem}.forecast-daily__temperature-high{font-size:3rem;font-weight:700}.forecast-daily__temperature-low{font-size:1.2rem;font-weight:500}
-
+/* @import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap); */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+body {
+  background-color: #254da5;
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0.4)
+    ),
+    url(imgs/bg.045edac4468e3ab87a833664e263f543.jpg);
+  background-size: cover;
+  color: #f5f5f5;
+  font-family: montserrat, sans-serif;
+}
+li {
+  list-style: none;
+}
+body {
+  height: 100vh;
+  padding: 8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+main {
+  display: flex;
+  justify-content: space-between;
+}
+.forecast {
+  display: flex;
+  justify-content: space-between;
+}
+.weather-info__description {
+  margin-bottom: 1rem;
+  font-size: 4rem;
+  font-weight: 500;
+  line-height: 1;
+}
+.weather-info__city {
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+.weather-info__temperature {
+  margin-bottom: 2rem;
+  font-size: 6rem;
+  font-weight: 700;
+}
+.weather-info__change-location {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.weather-details {
+  margin-bottom: 3rem;
+}
+.weather-details__label {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.weather-details__data {
+  font-size: 2.6rem;
+  font-weight: 600;
+}
+.forecast-daily__day {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+.forecast-daily__temperature-high {
+  font-size: 3rem;
+  font-weight: 700;
+}
+.forecast-daily__temperature-low {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
