@@ -19,6 +19,10 @@ main {
 }
 
 .weather-info {
+  &__icon {
+    width: 10rem;
+  }
+
   &__description {
     margin-bottom: 1rem;
 
@@ -42,14 +46,26 @@ main {
   }
 
   &__change-location {
+    display: flex;
     font-size: 1.2rem;
     font-weight: 600;
+
+    &-icon {
+      width: 10px;
+      margin-right: 5px;
+    }
   }
 }
 
 // Weather details on right side of page
 .weather-details {
   margin-bottom: 3rem;
+  display: flex;
+
+  &__icon {
+    width: 3rem;
+    margin-right: 1rem;
+  }
 
   &__label {
     margin-bottom: 1rem;
@@ -82,5 +98,9 @@ main {
       font-size: 1.2rem;
       font-weight: 500;
     }
+  }
+
+  &__icon {
+    width: 3rem;
   }
 }

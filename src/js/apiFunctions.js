@@ -3,7 +3,7 @@ import format from 'date-fns/format';
 
 // Gets city name from form
 function getDataFromForm() {
-  const cityName = 'auckland';
+  const cityName = 'pirongia';
   // remove whitespace for the api call
   return cityName.replace(/\s/g, '');
 }
@@ -29,7 +29,7 @@ async function getCoords(url) {
   coord.name = weatherData.name;
   coord.country = weatherData.sys.country;
   // console.log(weatherData);
-  console.log(weatherData);
+  console.log(weatherData.weather);
 
   return coord;
 }

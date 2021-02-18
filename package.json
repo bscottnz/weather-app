@@ -38,6 +38,7 @@
     "prettier": "^2.2.1",
     "sass-loader": "^11.0.1",
     "style-loader": "^2.0.0",
+    "svg-inline-loader": "^0.8.2",
     "webpack": "^5.21.2",
     "webpack-cli": "^4.5.0",
     "webpack-dev-server": "^3.11.2",
