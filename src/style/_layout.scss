@@ -185,6 +185,8 @@ main {
 
 // 24h forecast
 .forecast-hourly {
+  // keeps the boxes the same width, otherwise they can change between hour pages.
+  width: 8.5rem;
   &__day {
     margin-bottom: 2rem;
 

@@ -18,7 +18,8 @@ function capitalize(words) {
 // so I wrote my own functions.
 
 // format a unix date to "Wednesday, 16th Feb '21"
-function formatDate(unix, offset) {
+// return just the day of week if dateFormat = 'day'
+function formatDate(unix, offset, dateFormat = 'full') {
   const date = fromUnixTime(unix + offset).toUTCString();
   let dayOfWeek = date.slice(0, 3);
   let dayOfMonth = date.slice(5, 7);
@@ -64,11 +65,18 @@ function formatDate(unix, offset) {
     dayOfWeek = 'Sunday';
   }
 
+  // return only the day of week
+  if (dateFormat === 'day') {
+    return dayOfWeek;
+  }
+
+  // return full date string
   return `${dayOfWeek}, ${dayOfMonth}${suffix} ${month} '${year}`;
 }
 
 // convert utc string to format of 8:30 pm / 8:30 am
-function formatTime(unix, offset) {
+// return just 9pm or 9am with timeFormat="hour"
+function formatTime(unix, offset, timeFormat = 'full') {
   const date = fromUnixTime(unix + offset).toUTCString();
   let hour = date.slice(17, 19);
   const minute = date.slice(20, 22);
@@ -90,6 +98,15 @@ function formatTime(unix, offset) {
     hour = hour.slice(1, 2);
   }
 
+  // midnight formating
+  if (hour === '0') {
+    hour = 12;
+  }
+
+  // return just the hour
+  if (timeFormat === 'hour') {
+    return `${hour} ${amOrPm}`;
+  }
   return `${hour}:${minute} ${amOrPm}`;
 }
 // return a weather icon given a weather code
