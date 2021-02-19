@@ -28,8 +28,8 @@ async function getCoords(url) {
   const { coord } = weatherData;
   coord.name = weatherData.name;
   coord.country = weatherData.sys.country;
-  // console.log(weatherData);
-  console.log(weatherData.weather);
+  console.log(weatherData);
+  // console.log(weatherData.weather);
 
   return coord;
 }

@@ -12,10 +12,72 @@ main {
   justify-content: space-between;
 }
 
-// area that displays 7 day weather forecast
-.forecast {
+// Container for buttons to change forecast between daily and hourly
+.change-forecast {
+  display: flex;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.daily-btn,
+.hourly-btn {
+  margin-right: 2rem;
+
+  font-size: 1.4rem;
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  border: 2px solid transparent;
+
+  cursor: pointer;
+}
+
+// styling applied to selected forecast option
+.forecast-selected {
+  border: 2px solid $color-text;
+  border-radius: 3px;
+}
+
+// container around arrows that shift the hourly forecast
+.change-hours {
+  display: none;
+  margin-left: 1rem;
+  width: 9rem;
+  justify-content: space-between;
+  align-items: center;
+  &__left,
+  &__right {
+    width: 1.3rem;
+    cursor: pointer;
+  }
+}
+
+// visual navigation guide dots for changeing hours
+.dot {
+  position: relative;
+  top: -1px;
+
+  height: 7px;
+  width: 7px;
+  background-color: transparent;
+  border: 1px solid $color-text;
+  border-radius: 50%;
+
+  cursor: pointer;
+}
+
+.dot-selected {
+  background-color: $color-text;
+}
+
+// area that displays 7 day weather and 24hr forecast
+.forecast-daily-container,
+.forecast-hourly-container {
   display: flex;
   justify-content: space-between;
+}
+
+.forecast-hourly-outer-container {
+  display: none;
 }
 
 .weather-info {
@@ -32,20 +94,32 @@ main {
   }
 
   &__city {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 
     font-size: 1.8rem;
     font-weight: 500;
   }
 
+  &__date {
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+
+  &__time {
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+
   &__temperature {
     margin-bottom: 2rem;
+    margin-top: 2rem;
 
     font-size: 6rem;
     font-weight: 700;
   }
 
   &__change-location {
+    margin-top: 2rem;
     display: flex;
     font-size: 1.2rem;
     font-weight: 600;
@@ -68,10 +142,10 @@ main {
   }
 
   &__label {
-    margin-bottom: 1rem;
+    margin-bottom: 0.6rem;
 
     font-size: 1.2rem;
-    font-weight: 500;
+    font-weight: 600;
   }
 
   &__data {
@@ -86,21 +160,67 @@ main {
     margin-bottom: 2rem;
 
     font-size: 2rem;
+    font-weight: 500;
   }
 
   &__temperature {
     &-high {
+      margin-bottom: 0.4rem;
       font-size: 3rem;
       font-weight: 700;
     }
 
     &-low {
       font-size: 1.2rem;
-      font-weight: 500;
+      font-weight: 600;
     }
   }
 
   &__icon {
-    width: 3rem;
+    margin-top: 2rem;
+
+    width: 4rem;
   }
+}
+
+// 24h forecast
+.forecast-hourly {
+  &__day {
+    margin-bottom: 2rem;
+
+    font-size: 2rem;
+    font-weight: 500;
+  }
+
+  &__temperature {
+    &-high {
+      margin-bottom: 3.9rem;
+      font-size: 3rem;
+      font-weight: 700;
+    }
+  }
+
+  &__icon {
+    margin-top: 2rem;
+
+    width: 4rem;
+  }
+}
+#current-hour-plus-9,
+#current-hour-plus-10,
+#current-hour-plus-11,
+#current-hour-plus-12,
+#current-hour-plus-13,
+#current-hour-plus-14,
+#current-hour-plus-15,
+#current-hour-plus-16,
+#current-hour-plus-17,
+#current-hour-plus-18,
+#current-hour-plus-19,
+#current-hour-plus-20,
+#current-hour-plus-21,
+#current-hour-plus-22,
+#current-hour-plus-23,
+#current-hour-plus-24 {
+  display: none;
 }
