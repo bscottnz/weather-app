@@ -3,9 +3,22 @@ import format from 'date-fns/format';
 
 // Gets city name from form
 function getDataFromForm() {
-  const cityName = 'pirongia';
-  // remove whitespace for the api call
-  return cityName.replace(/\s/g, '');
+  // const cityName = 'pirongia';
+  const input = document.querySelector('.search-box-input');
+  const cityName = input.value;
+
+  // if not an empty string
+  if (cityName) {
+    // remove whitespace for the api call
+    // return cityName.replace(/,\s/g, '+').replace(/\s/g, '');
+
+    return cityName
+      .replace(/(\s+$|^\s+)/g, '') // remove whitespace from begining and end of string
+      .replace(/(,\s+)/g, ',') // remove any white space that follows a comma
+      .replace(/(\s+,)/g, ',') // remove any white space that preceeds a comma
+      .replace(/\s+/g, '+'); // replace any remaining white space with +, so it works in api call
+  }
+  return '';
 }
 
 // To get full weather data, 2 API requests need to be made. The current weather response returns

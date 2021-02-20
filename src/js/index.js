@@ -2,24 +2,56 @@ import '../style/main.scss';
 import * as apiFncs from './apiFunctions';
 import * as domFncs from './domFunctions';
 
+const searchBox = document.querySelector('.search-box-input');
+const searchIcon = document.querySelector('.search');
+// hide data labels until the data has loaded
+document.querySelector('body').style.visibility = 'hidden';
+
 // Procedural workflow function
-async function getWeatherData() {
-  const cityName = apiFncs.getDataFromForm();
+async function getWeatherData(initialLoad = false) {
+  try {
+    let cityName;
+    // default weather on initial load
+    if (initialLoad) {
+      cityName = 'pirongia';
+    } else {
+      // if not initial load, get relevent weather data
+      cityName = apiFncs.getDataFromForm();
+    }
 
-  const requestCoordsUrl = apiFncs.buildRequestCoordsUrl(cityName);
-  const coords = await apiFncs.getCoords(requestCoordsUrl);
+    // if no name entered, exit function
+    if (!cityName) {
+      return;
+    }
 
-  const requestForecastUrl = apiFncs.buildRequestForecastUrl(coords);
-  const weatherData = await apiFncs.getForecast(requestForecastUrl);
-  weatherData.name = coords.name;
-  weatherData.country = coords.country;
-  apiFncs.formatWeatherData(weatherData);
-  console.log(weatherData);
-  // console.log(weatherData.current.weather[0].description);
-  domFncs.renderWeatherData(weatherData);
+    const requestCoordsUrl = apiFncs.buildRequestCoordsUrl(cityName);
+    const coords = await apiFncs.getCoords(requestCoordsUrl);
+
+    const requestForecastUrl = apiFncs.buildRequestForecastUrl(coords);
+    const weatherData = await apiFncs.getForecast(requestForecastUrl);
+    weatherData.name = coords.name;
+    weatherData.country = coords.country;
+    apiFncs.formatWeatherData(weatherData);
+    console.log(weatherData);
+
+    // remove error msg if previous search failed
+    document.querySelector('.error-msg').style.visibility = 'hidden';
+
+    domFncs.renderWeatherData(weatherData);
+
+    document.querySelector('body').style.visibility = 'visible';
+  } catch (err) {
+    // display input search error to user
+    document.querySelector('.error-msg').style.visibility = 'visible';
+  }
 }
 
-getWeatherData();
+// intial load
+getWeatherData(true);
+
+searchIcon.addEventListener('click', () => {
+  getWeatherData();
+});
 
 const dailyBtn = document.querySelector('.daily-btn');
 const hourlyBtn = document.querySelector('.hourly-btn');
