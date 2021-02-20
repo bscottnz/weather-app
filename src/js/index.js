@@ -4,9 +4,15 @@ import * as domFncs from './domFunctions';
 
 const searchBox = document.querySelector('.search-box-input');
 const searchIcon = document.querySelector('.search');
+const displayF = document.querySelector('.weather-info__units-f');
+const displayC = document.querySelector('.weather-info__units-c');
 // hide data labels until the data has loaded
 document.querySelector('body').style.visibility = 'hidden';
-let units = 'imperial';
+let units = 'metric';
+
+// flags to keep track of last searched city, to re-use this info when changing units
+let unitReload = false;
+let lastCity = 'auckland';
 
 // Procedural workflow function
 async function getWeatherData(unit, initialLoad = false) {
@@ -25,6 +31,12 @@ async function getWeatherData(unit, initialLoad = false) {
       return;
     }
 
+    if (unitReload) {
+      cityName = lastCity;
+    }
+
+    lastCity = cityName;
+
     const requestCoordsUrl = apiFncs.buildRequestCoordsUrl(cityName);
     const coords = await apiFncs.getCoords(requestCoordsUrl);
 
@@ -32,13 +44,15 @@ async function getWeatherData(unit, initialLoad = false) {
     const weatherData = await apiFncs.getForecast(requestForecastUrl);
     weatherData.name = coords.name;
     weatherData.country = coords.country;
-    apiFncs.formatWeatherData(weatherData);
+
     // console.log(weatherData);
 
     // remove error msg if previous search failed
     document.querySelector('.error-msg').style.visibility = 'hidden';
 
-    domFncs.renderWeatherData(weatherData);
+    domFncs.renderWeatherData(weatherData, unit);
+    // reset unit reload
+    unitReload = false;
 
     document.querySelector('body').style.visibility = 'visible';
   } catch (err) {
@@ -55,6 +69,12 @@ getWeatherData(units, true);
 
 searchIcon.addEventListener('click', () => {
   getWeatherData(units);
+});
+
+searchBox.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    getWeatherData(units);
+  }
 });
 
 const dailyBtn = document.querySelector('.daily-btn');
@@ -92,4 +112,23 @@ dots.forEach((dot) => {
     hoursPage = parseInt(e.target.dataset.dot, 10);
     domFncs.changeHoursPage(hoursPage);
   });
+});
+
+// toggle degrees c / degrees f
+displayC.addEventListener('click', async () => {
+  units = 'metric';
+  unitReload = true;
+  await getWeatherData(units, true);
+
+  displayC.style.display = 'none';
+  displayF.style.display = 'block';
+});
+
+displayF.addEventListener('click', async () => {
+  units = 'imperial';
+  unitReload = true;
+  await getWeatherData(units, true);
+
+  displayF.style.display = 'none';
+  displayC.style.display = 'block';
 });

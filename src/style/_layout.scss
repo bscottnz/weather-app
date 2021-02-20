@@ -111,11 +111,24 @@ main {
   }
 
   &__temperature {
-    margin-bottom: 2rem;
+    margin-bottom: 0.2rem;
     margin-top: 2rem;
 
     font-size: 6rem;
     font-weight: 700;
+  }
+
+  &__units-f,
+  &__units-c {
+    margin-bottom: 2.5rem;
+    font-weight: 500;
+    font-size: 1.2rem;
+
+    cursor: pointer;
+  }
+
+  &__units-c {
+    display: none;
   }
 
   &__change-location {

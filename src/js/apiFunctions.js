@@ -1,6 +1,3 @@
-import fromUnixTime from 'date-fns/fromUnixTime';
-import format from 'date-fns/format';
-
 // Gets city name from form
 function getDataFromForm() {
   // const cityName = 'pirongia';
@@ -54,20 +51,10 @@ async function getForecast(url) {
   return forecastData;
 }
 
-// Format weather data
-function formatWeatherData(data) {
-  const unixTime = data.current.dt;
-  const localTime = fromUnixTime(unixTime);
-  // console.log(format(localTime, 'yyyyMMdd'));
-  // Convert current time, sunrise and sunset from unix to regular date time.
-  // data.current
-}
-
 export {
   getDataFromForm,
   buildRequestCoordsUrl,
   buildRequestForecastUrl,
   getCoords,
   getForecast,
-  formatWeatherData,
 };

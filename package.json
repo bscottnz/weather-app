@@ -46,8 +46,6 @@
   },
   "dependencies": {
     "clean-webpack-plugin": "^3.0.0",
-    "date-fns": "^2.17.0",
-    "date-fns-timezone": "^0.1.4",
-    "request": "^2.88.2"
+    "date-fns": "^2.17.0"
   }
 }

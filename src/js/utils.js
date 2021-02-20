@@ -1,8 +1,4 @@
 import fromUnixTime from 'date-fns/fromUnixTime';
-import parseISO from 'date-fns/parseISO';
-import format from 'date-fns/format';
-
-const { formatToTimeZone } = require('date-fns-timezone');
 
 // title case a string
 function capitalize(words) {

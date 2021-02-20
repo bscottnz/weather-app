@@ -93,7 +93,12 @@ function displayHourlyForecast() {
 }
 
 // render top left weather data
-function renderWeatherInformation(data) {
+function renderWeatherInformation(data, units) {
+  let tempUnit = '°C';
+
+  if (units === 'imperial') {
+    tempUnit = '°F';
+  }
   const weatherDescription = document.querySelector(
     '.weather-info__description'
   );
@@ -108,18 +113,31 @@ function renderWeatherInformation(data) {
   time.textContent = utils.formatTime(data.current.dt, data.timezone_offset);
 
   const temperature = document.querySelector('.weather-info__temperature');
-  temperature.textContent = `${Math.round(data.current.temp)} °C`;
+  temperature.textContent = `${Math.round(data.current.temp)} ${tempUnit}`;
   const temperatureIcon = document.querySelector('.weather-info__icon');
   temperatureIcon.innerHTML = utils.getIcon(data.current.weather[0].icon);
 }
 
 // render top right wether details
-function renderWeatherDetails(data) {
+function renderWeatherDetails(data, units) {
+  let tempUnit = '°C';
+  let speedUnit = 'km/h';
+
+  if (units === 'imperial') {
+    tempUnit = '°F';
+    speedUnit = 'mph';
+  }
+
+  // convert windspeed from meters per second to km/h
+  if (units === 'metric') {
+    data.current.wind_speed *= 3.6;
+  }
+
   const temperatureFeelsLike = document.querySelector('#feels-like');
 
   temperatureFeelsLike.textContent = `${Math.round(
     data.current.feels_like
-  )} °C`;
+  )} ${tempUnit}`;
 
   const humidity = document.querySelector('#humidity');
   humidity.textContent = `${data.current.humidity} %`;
@@ -129,11 +147,17 @@ function renderWeatherDetails(data) {
   // round to 1 decimal place
   windSpeed.textContent = `${
     Math.round(data.current.wind_speed * 10) / 10
-  } km/h`;
+  } ${speedUnit}`;
 }
 
 // render daily forecast
-function renderDailyForecast(data) {
+function renderDailyForecast(data, units) {
+  let tempUnit = '°C';
+
+  if (units === 'imperial') {
+    tempUnit = '°F';
+  }
+
   // ##############################
   // render the day of week name
   // ##############################
@@ -207,37 +231,51 @@ function renderDailyForecast(data) {
   const dayPlusOneTempHigh = document.querySelector(
     '#current-day-plus-one .forecast-daily__temperature-high'
   );
-  dayPlusOneTempHigh.textContent = `${Math.round(data.daily[1].temp.max)} °C`;
+  dayPlusOneTempHigh.textContent = `${Math.round(
+    data.daily[1].temp.max
+  )} ${tempUnit}`;
 
   const dayPlusTwoTempHigh = document.querySelector(
     '#current-day-plus-two .forecast-daily__temperature-high'
   );
-  dayPlusTwoTempHigh.textContent = `${Math.round(data.daily[2].temp.max)} °C`;
+  dayPlusTwoTempHigh.textContent = `${Math.round(
+    data.daily[2].temp.max
+  )} ${tempUnit}`;
 
   const dayPlusThreeTempHigh = document.querySelector(
     '#current-day-plus-three .forecast-daily__temperature-high'
   );
-  dayPlusThreeTempHigh.textContent = `${Math.round(data.daily[3].temp.max)} °C`;
+  dayPlusThreeTempHigh.textContent = `${Math.round(
+    data.daily[3].temp.max
+  )} ${tempUnit}`;
 
   const dayPlusFourTempHigh = document.querySelector(
     '#current-day-plus-four .forecast-daily__temperature-high'
   );
-  dayPlusFourTempHigh.textContent = `${Math.round(data.daily[4].temp.max)} °C`;
+  dayPlusFourTempHigh.textContent = `${Math.round(
+    data.daily[4].temp.max
+  )} ${tempUnit}`;
 
   const dayPlusFiveTempHigh = document.querySelector(
     '#current-day-plus-five .forecast-daily__temperature-high'
   );
-  dayPlusFiveTempHigh.textContent = `${Math.round(data.daily[5].temp.max)} °C`;
+  dayPlusFiveTempHigh.textContent = `${Math.round(
+    data.daily[5].temp.max
+  )} ${tempUnit}`;
 
   const dayPlusSixTempHigh = document.querySelector(
     '#current-day-plus-six .forecast-daily__temperature-high'
   );
-  dayPlusSixTempHigh.textContent = `${Math.round(data.daily[6].temp.max)} °C`;
+  dayPlusSixTempHigh.textContent = `${Math.round(
+    data.daily[6].temp.max
+  )} ${tempUnit}`;
 
   const dayPlusSevenTempHigh = document.querySelector(
     '#current-day-plus-seven .forecast-daily__temperature-high'
   );
-  dayPlusSevenTempHigh.textContent = `${Math.round(data.daily[7].temp.max)} °C`;
+  dayPlusSevenTempHigh.textContent = `${Math.round(
+    data.daily[7].temp.max
+  )} ${tempUnit}`;
 
   // ##############################
   // render daily low temperature
@@ -245,37 +283,51 @@ function renderDailyForecast(data) {
   const dayPlusOneTempLow = document.querySelector(
     '#current-day-plus-one .forecast-daily__temperature-low'
   );
-  dayPlusOneTempLow.textContent = `${Math.round(data.daily[1].temp.min)} °C`;
+  dayPlusOneTempLow.textContent = `${Math.round(
+    data.daily[1].temp.min
+  )} ${tempUnit}`;
 
   const dayPlusTwoTempLow = document.querySelector(
     '#current-day-plus-two .forecast-daily__temperature-low'
   );
-  dayPlusTwoTempLow.textContent = `${Math.round(data.daily[2].temp.min)} °C`;
+  dayPlusTwoTempLow.textContent = `${Math.round(
+    data.daily[2].temp.min
+  )} ${tempUnit}`;
 
   const dayPlusThreeTempLow = document.querySelector(
     '#current-day-plus-three .forecast-daily__temperature-low'
   );
-  dayPlusThreeTempLow.textContent = `${Math.round(data.daily[3].temp.min)} °C`;
+  dayPlusThreeTempLow.textContent = `${Math.round(
+    data.daily[3].temp.min
+  )} ${tempUnit}`;
 
   const dayPlusFourTempLow = document.querySelector(
     '#current-day-plus-four .forecast-daily__temperature-low'
   );
-  dayPlusFourTempLow.textContent = `${Math.round(data.daily[4].temp.min)} °C`;
+  dayPlusFourTempLow.textContent = `${Math.round(
+    data.daily[4].temp.min
+  )} ${tempUnit}`;
 
   const dayPlusFiveTempLow = document.querySelector(
     '#current-day-plus-five .forecast-daily__temperature-low'
   );
-  dayPlusFiveTempLow.textContent = `${Math.round(data.daily[5].temp.min)} °C`;
+  dayPlusFiveTempLow.textContent = `${Math.round(
+    data.daily[5].temp.min
+  )} ${tempUnit}`;
 
   const dayPlusSixTempLow = document.querySelector(
     '#current-day-plus-six .forecast-daily__temperature-low'
   );
-  dayPlusSixTempLow.textContent = `${Math.round(data.daily[6].temp.min)} °C`;
+  dayPlusSixTempLow.textContent = `${Math.round(
+    data.daily[6].temp.min
+  )} ${tempUnit}`;
 
   const dayPlusSevenTempLow = document.querySelector(
     '#current-day-plus-seven .forecast-daily__temperature-low'
   );
-  dayPlusSevenTempLow.textContent = `${Math.round(data.daily[7].temp.min)} °C`;
+  dayPlusSevenTempLow.textContent = `${Math.round(
+    data.daily[7].temp.min
+  )} ${tempUnit}`;
 
   // ##############################
   // render daily weather icon
@@ -317,7 +369,13 @@ function renderDailyForecast(data) {
 }
 
 // render hourly forecast
-function renderHourlyForecast(data) {
+function renderHourlyForecast(data, units) {
+  let tempUnit = '°C';
+
+  if (units === 'imperial') {
+    tempUnit = '°F';
+  }
+
   // ##############################
   // render hourly time
   // ##############################
@@ -544,122 +602,170 @@ function renderHourlyForecast(data) {
   const hourPlus1Temperature = document.querySelector(
     '#current-hour-plus-1 .forecast-hourly__temperature-high'
   );
-  hourPlus1Temperature.textContent = `${Math.round(data.hourly[1].temp)} °C`;
+  hourPlus1Temperature.textContent = `${Math.round(
+    data.hourly[1].temp
+  )} ${tempUnit}`;
 
   const hourPlus2Temperature = document.querySelector(
     '#current-hour-plus-2 .forecast-hourly__temperature-high'
   );
-  hourPlus2Temperature.textContent = `${Math.round(data.hourly[2].temp)} °C`;
+  hourPlus2Temperature.textContent = `${Math.round(
+    data.hourly[2].temp
+  )} ${tempUnit}`;
 
   const hourPlus3Temperature = document.querySelector(
     '#current-hour-plus-3 .forecast-hourly__temperature-high'
   );
-  hourPlus3Temperature.textContent = `${Math.round(data.hourly[3].temp)} °C`;
+  hourPlus3Temperature.textContent = `${Math.round(
+    data.hourly[3].temp
+  )} ${tempUnit}`;
 
   const hourPlus4Temperature = document.querySelector(
     '#current-hour-plus-4 .forecast-hourly__temperature-high'
   );
-  hourPlus4Temperature.textContent = `${Math.round(data.hourly[4].temp)} °C`;
+  hourPlus4Temperature.textContent = `${Math.round(
+    data.hourly[4].temp
+  )} ${tempUnit}`;
 
   const hourPlus5Temperature = document.querySelector(
     '#current-hour-plus-5 .forecast-hourly__temperature-high'
   );
-  hourPlus5Temperature.textContent = `${Math.round(data.hourly[5].temp)} °C`;
+  hourPlus5Temperature.textContent = `${Math.round(
+    data.hourly[5].temp
+  )} ${tempUnit}`;
 
   const hourPlus6Temperature = document.querySelector(
     '#current-hour-plus-6 .forecast-hourly__temperature-high'
   );
-  hourPlus6Temperature.textContent = `${Math.round(data.hourly[6].temp)} °C`;
+  hourPlus6Temperature.textContent = `${Math.round(
+    data.hourly[6].temp
+  )} ${tempUnit}`;
 
   const hourPlus7Temperature = document.querySelector(
     '#current-hour-plus-7 .forecast-hourly__temperature-high'
   );
-  hourPlus7Temperature.textContent = `${Math.round(data.hourly[7].temp)} °C`;
+  hourPlus7Temperature.textContent = `${Math.round(
+    data.hourly[7].temp
+  )} ${tempUnit}`;
 
   const hourPlus8Temperature = document.querySelector(
     '#current-hour-plus-8 .forecast-hourly__temperature-high'
   );
-  hourPlus8Temperature.textContent = `${Math.round(data.hourly[8].temp)} °C`;
+  hourPlus8Temperature.textContent = `${Math.round(
+    data.hourly[8].temp
+  )} ${tempUnit}`;
 
   const hourPlus9Temperature = document.querySelector(
     '#current-hour-plus-9 .forecast-hourly__temperature-high'
   );
-  hourPlus9Temperature.textContent = `${Math.round(data.hourly[9].temp)} °C`;
+  hourPlus9Temperature.textContent = `${Math.round(
+    data.hourly[9].temp
+  )} ${tempUnit}`;
 
   const hourPlus10Temperature = document.querySelector(
     '#current-hour-plus-10 .forecast-hourly__temperature-high'
   );
-  hourPlus10Temperature.textContent = `${Math.round(data.hourly[10].temp)} °C`;
+  hourPlus10Temperature.textContent = `${Math.round(
+    data.hourly[10].temp
+  )} ${tempUnit}`;
 
   const hourPlus11Temperature = document.querySelector(
     '#current-hour-plus-11 .forecast-hourly__temperature-high'
   );
-  hourPlus11Temperature.textContent = `${Math.round(data.hourly[11].temp)} °C`;
+  hourPlus11Temperature.textContent = `${Math.round(
+    data.hourly[11].temp
+  )} ${tempUnit}`;
 
   const hourPlus12Temperature = document.querySelector(
     '#current-hour-plus-12 .forecast-hourly__temperature-high'
   );
-  hourPlus12Temperature.textContent = `${Math.round(data.hourly[12].temp)} °C`;
+  hourPlus12Temperature.textContent = `${Math.round(
+    data.hourly[12].temp
+  )} ${tempUnit}`;
 
   const hourPlus13Temperature = document.querySelector(
     '#current-hour-plus-13 .forecast-hourly__temperature-high'
   );
-  hourPlus13Temperature.textContent = `${Math.round(data.hourly[13].temp)} °C`;
+  hourPlus13Temperature.textContent = `${Math.round(
+    data.hourly[13].temp
+  )} ${tempUnit}`;
 
   const hourPlus14Temperature = document.querySelector(
     '#current-hour-plus-14 .forecast-hourly__temperature-high'
   );
-  hourPlus14Temperature.textContent = `${Math.round(data.hourly[14].temp)} °C`;
+  hourPlus14Temperature.textContent = `${Math.round(
+    data.hourly[14].temp
+  )} ${tempUnit}`;
 
   const hourPlus15Temperature = document.querySelector(
     '#current-hour-plus-15 .forecast-hourly__temperature-high'
   );
-  hourPlus15Temperature.textContent = `${Math.round(data.hourly[15].temp)} °C`;
+  hourPlus15Temperature.textContent = `${Math.round(
+    data.hourly[15].temp
+  )} ${tempUnit}`;
 
   const hourPlus16Temperature = document.querySelector(
     '#current-hour-plus-16 .forecast-hourly__temperature-high'
   );
-  hourPlus16Temperature.textContent = `${Math.round(data.hourly[16].temp)} °C`;
+  hourPlus16Temperature.textContent = `${Math.round(
+    data.hourly[16].temp
+  )} ${tempUnit}`;
 
   const hourPlus17Temperature = document.querySelector(
     '#current-hour-plus-17 .forecast-hourly__temperature-high'
   );
-  hourPlus17Temperature.textContent = `${Math.round(data.hourly[17].temp)} °C`;
+  hourPlus17Temperature.textContent = `${Math.round(
+    data.hourly[17].temp
+  )} ${tempUnit}`;
 
   const hourPlus18Temperature = document.querySelector(
     '#current-hour-plus-18 .forecast-hourly__temperature-high'
   );
-  hourPlus18Temperature.textContent = `${Math.round(data.hourly[18].temp)} °C`;
+  hourPlus18Temperature.textContent = `${Math.round(
+    data.hourly[18].temp
+  )} ${tempUnit}`;
 
   const hourPlus19Temperature = document.querySelector(
     '#current-hour-plus-19 .forecast-hourly__temperature-high'
   );
-  hourPlus19Temperature.textContent = `${Math.round(data.hourly[19].temp)} °C`;
+  hourPlus19Temperature.textContent = `${Math.round(
+    data.hourly[19].temp
+  )} ${tempUnit}`;
 
   const hourPlus20Temperature = document.querySelector(
     '#current-hour-plus-20 .forecast-hourly__temperature-high'
   );
-  hourPlus20Temperature.textContent = `${Math.round(data.hourly[20].temp)} °C`;
+  hourPlus20Temperature.textContent = `${Math.round(
+    data.hourly[20].temp
+  )} ${tempUnit}`;
 
   const hourPlus21Temperature = document.querySelector(
     '#current-hour-plus-21 .forecast-hourly__temperature-high'
   );
-  hourPlus21Temperature.textContent = `${Math.round(data.hourly[21].temp)} °C`;
+  hourPlus21Temperature.textContent = `${Math.round(
+    data.hourly[21].temp
+  )} ${tempUnit}`;
 
   const hourPlus22Temperature = document.querySelector(
     '#current-hour-plus-22 .forecast-hourly__temperature-high'
   );
-  hourPlus22Temperature.textContent = `${Math.round(data.hourly[22].temp)} °C`;
+  hourPlus22Temperature.textContent = `${Math.round(
+    data.hourly[22].temp
+  )} ${tempUnit}`;
 
   const hourPlus23Temperature = document.querySelector(
     '#current-hour-plus-23 .forecast-hourly__temperature-high'
   );
-  hourPlus23Temperature.textContent = `${Math.round(data.hourly[23].temp)} °C`;
+  hourPlus23Temperature.textContent = `${Math.round(
+    data.hourly[23].temp
+  )} ${tempUnit}`;
 
   const hourPlus24Temperature = document.querySelector(
     '#current-hour-plus-24 .forecast-hourly__temperature-high'
   );
-  hourPlus24Temperature.textContent = `${Math.round(data.hourly[24].temp)} °C`;
+  hourPlus24Temperature.textContent = `${Math.round(
+    data.hourly[24].temp
+  )} ${tempUnit}`;
 
   // ##############################
   // render hourly weather icon
@@ -786,11 +892,11 @@ function renderHourlyForecast(data) {
   hourPlus24Icon.innerHTML = utils.getIcon(data.hourly[24].weather[0].icon);
 }
 
-function renderWeatherData(data) {
-  renderWeatherInformation(data);
-  renderWeatherDetails(data);
-  renderDailyForecast(data);
-  renderHourlyForecast(data);
+function renderWeatherData(data, units) {
+  renderWeatherInformation(data, units);
+  renderWeatherDetails(data, units);
+  renderDailyForecast(data, units);
+  renderHourlyForecast(data, units);
 }
 export {
   changeHoursPage,
