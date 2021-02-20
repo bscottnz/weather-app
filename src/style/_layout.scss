@@ -121,7 +121,7 @@ main {
   &__units-f,
   &__units-c {
     margin-bottom: 2.5rem;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 1.2rem;
 
     cursor: pointer;
@@ -198,8 +198,9 @@ main {
 
 // 24h forecast
 .forecast-hourly {
-  // keeps the boxes the same width, otherwise they can change between hour pages.
+  // keeps the boxes the same size, otherwise they can change between hour pages.
   width: 8.5rem;
+  height: 16.3rem;
   &__day {
     margin-bottom: 2rem;
 
