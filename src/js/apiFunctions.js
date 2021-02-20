@@ -10,7 +10,6 @@ function getDataFromForm() {
   // if not an empty string
   if (cityName) {
     // remove whitespace for the api call
-    // return cityName.replace(/,\s/g, '+').replace(/\s/g, '');
 
     return cityName
       .replace(/(\s+$|^\s+)/g, '') // remove whitespace from begining and end of string
@@ -30,8 +29,8 @@ function buildRequestCoordsUrl(cityName) {
 }
 
 // Builds request url to obtain weather forecast
-function buildRequestForecastUrl(coordinates) {
-  return `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude=minutely,alerts&units=metric&appid=20f7632ffc2c022654e4093c6947b4f4`;
+function buildRequestForecastUrl(coordinates, units) {
+  return `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude=minutely,alerts&units=${units}&appid=20f7632ffc2c022654e4093c6947b4f4`;
 }
 
 // Returns coordinates and city name for a specified city name.

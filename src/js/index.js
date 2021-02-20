@@ -6,14 +6,15 @@ const searchBox = document.querySelector('.search-box-input');
 const searchIcon = document.querySelector('.search');
 // hide data labels until the data has loaded
 document.querySelector('body').style.visibility = 'hidden';
+let units = 'imperial';
 
 // Procedural workflow function
-async function getWeatherData(initialLoad = false) {
+async function getWeatherData(unit, initialLoad = false) {
   try {
     let cityName;
     // default weather on initial load
     if (initialLoad) {
-      cityName = 'pirongia';
+      cityName = 'auckland';
     } else {
       // if not initial load, get relevent weather data
       cityName = apiFncs.getDataFromForm();
@@ -27,12 +28,12 @@ async function getWeatherData(initialLoad = false) {
     const requestCoordsUrl = apiFncs.buildRequestCoordsUrl(cityName);
     const coords = await apiFncs.getCoords(requestCoordsUrl);
 
-    const requestForecastUrl = apiFncs.buildRequestForecastUrl(coords);
+    const requestForecastUrl = apiFncs.buildRequestForecastUrl(coords, unit);
     const weatherData = await apiFncs.getForecast(requestForecastUrl);
     weatherData.name = coords.name;
     weatherData.country = coords.country;
     apiFncs.formatWeatherData(weatherData);
-    console.log(weatherData);
+    // console.log(weatherData);
 
     // remove error msg if previous search failed
     document.querySelector('.error-msg').style.visibility = 'hidden';
@@ -44,13 +45,16 @@ async function getWeatherData(initialLoad = false) {
     // display input search error to user
     document.querySelector('.error-msg').style.visibility = 'visible';
   }
+
+  // clear search box
+  document.querySelector('.search-box-input').value = '';
 }
 
 // intial load
-getWeatherData(true);
+getWeatherData(units, true);
 
 searchIcon.addEventListener('click', () => {
-  getWeatherData();
+  getWeatherData(units);
 });
 
 const dailyBtn = document.querySelector('.daily-btn');
