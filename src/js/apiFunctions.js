@@ -22,7 +22,7 @@ function getDataFromForm() {
 
 // Builds request url to obtain coordinates
 function buildRequestCoordsUrl(cityName) {
-  return `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&APPID=20f7632ffc2c022654e4093c6947b4f4`;
+  return `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&APPID=20f7632ffc2c022654e4093c6947b4f4`;
 }
 
 // Builds request url to obtain weather forecast
