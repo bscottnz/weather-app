@@ -4,6 +4,15 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  @media (max-width: 1600px) {
+    padding: 7rem;
+  }
+
+  @media (max-width: 1200px) {
+    padding: 6rem;
+  }
+
   @media (max-width: 800px) {
     padding: 4rem;
   }
