@@ -1,15 +1,22 @@
 body {
-  height: 100vh;
+  min-height: 100vh;
   padding: 8rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  @media (max-width: 800px) {
+    padding: 4rem;
+  }
 }
 
 // main area that includes weather info and weather detail sections
 main {
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 550px) {
+    margin-bottom: 1rem;
+  }
 }
 
 // Container for buttons to change forecast between daily and hourly
@@ -17,6 +24,10 @@ main {
   display: flex;
   align-items: center;
   margin-bottom: 3rem;
+
+  @media (max-width: 550px) {
+    justify-content: center;
+  }
 }
 
 .daily-btn,
@@ -74,6 +85,11 @@ main {
 .forecast-hourly-container {
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 550px) {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .forecast-hourly-outer-container {
@@ -81,6 +97,7 @@ main {
 }
 
 .weather-info {
+  max-width: 55%;
   &__icon {
     width: 10rem;
   }
@@ -125,6 +142,10 @@ main {
     font-size: 1.2rem;
 
     cursor: pointer;
+
+    @media (max-width: 750px) {
+      font-size: 1.4rem;
+    }
   }
 
   &__units-c {
@@ -159,6 +180,10 @@ main {
 
     font-size: 1.2rem;
     font-weight: 600;
+
+    @media (max-width: 750px) {
+      font-size: 1.4rem;
+    }
   }
 
   &__data {
@@ -169,11 +194,45 @@ main {
 
 // Seven day forecast
 .forecast-daily {
+  @media (max-width: 550px) {
+    display: flex;
+    width: 60%;
+    height: 40px;
+
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+  }
+
+  @media (max-width: 500px) {
+    width: 65%;
+  }
+
+  @media (max-width: 450px) {
+    width: 70%;
+  }
+
+  @media (max-width: 400px) {
+    width: 80%;
+  }
+
+  @media (max-width: 350px) {
+    width: 85%;
+  }
+
+  @media (max-width: 330px) {
+    width: 100%;
+  }
+
   &__day {
     margin-bottom: 2rem;
 
     font-size: 2rem;
     font-weight: 500;
+
+    @media (max-width: 550px) {
+      margin-right: auto;
+    }
   }
 
   &__temperature {
@@ -187,12 +246,21 @@ main {
       font-size: 1.2rem;
       font-weight: 600;
     }
+
+    @media (max-width: 550px) {
+      margin-right: 4rem;
+      width: 55px;
+    }
   }
 
   &__icon {
     margin-top: 2rem;
 
     width: 4rem;
+
+    @media (max-width: 550px) {
+      margin-top: 1rem;
+    }
   }
 }
 
@@ -201,18 +269,61 @@ main {
   // keeps the boxes the same size, otherwise they can change between hour pages.
   width: 8.5rem;
   height: 16.3rem;
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 550px) {
+    flex-direction: row;
+    width: 60%;
+
+    height: 40px;
+
+    &:not(:nth-child(8n)) {
+      margin-bottom: 1rem;
+    }
+  }
+
+  @media (max-width: 500px) {
+    width: 65%;
+  }
+
+  @media (max-width: 450px) {
+    width: 70%;
+  }
+
+  @media (max-width: 400px) {
+    width: 80%;
+  }
+
+  @media (max-width: 350px) {
+    width: 85%;
+  }
+
+  @media (max-width: 330px) {
+    width: 100%;
+  }
+
   &__day {
     margin-bottom: 2rem;
 
     font-size: 2rem;
     font-weight: 500;
+
+    @media (max-width: 550px) {
+      margin-right: auto;
+    }
   }
 
   &__temperature {
     &-high {
-      margin-bottom: 3.9rem;
+      // margin-bottom: 3.9rem;
       font-size: 3rem;
       font-weight: 700;
+    }
+
+    @media (max-width: 550px) {
+      margin-right: 4rem;
+      width: 55px;
     }
   }
 
@@ -220,6 +331,10 @@ main {
     margin-top: 2rem;
 
     width: 4rem;
+
+    @media (max-width: 550px) {
+      margin-top: 1rem;
+    }
   }
 }
 #current-hour-plus-9,

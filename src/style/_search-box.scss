@@ -4,22 +4,32 @@
   height: 30px;
   max-width: 200px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
 
   border-bottom: 2px solid $color-text;
   // border-radius: 3px;
   padding: 6px 12px;
+
+  @media (max-width: 750px) {
+    max-width: 150px;
+  }
 }
 
 // search box input
 .search-box-input {
   height: 100%;
-  width: 150px;
+  flex-shrink: 2;
+  // max-width: 150px;
   background-color: transparent;
   border: none;
   color: $color-text;
   font-size: 1.4rem;
   font-weight: 600;
+
+  @media (max-width: 332px) {
+    max-width: 90px;
+  }
 
   &:focus {
     outline: none;
@@ -34,7 +44,7 @@
 //search box button
 .search {
   height: 18px;
-  width: 18px;
+  min-width: 18px;
   // background-color: rgb(177, 48, 48);
   background-image: url('../assets/search-icon.png');
   background-size: contain;

@@ -14,10 +14,19 @@ html {
   box-sizing: border-box;
 
   font-size: 62.5%; // 1 rem = 10 px (browser default is 16)
+
+  @media (max-width: 1200px) {
+    font-size: 50%;
+  }
+
+  @media (max-width: 750px) {
+    font-size: 40%;
+  }
 }
 
 body {
-  background-color: rgb(37, 77, 165);
+  min-height: 100vh;
+  // background-color: rgb(37, 77, 165);
   background-image: linear-gradient(
       to right,
       rgba(black, 0.4),
@@ -25,6 +34,8 @@ body {
     ),
     url('../assets/bg.jpg');
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   color: $color-text;
   font-family: montserrat, sans-serif;
 }

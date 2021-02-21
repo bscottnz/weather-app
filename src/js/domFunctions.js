@@ -20,41 +20,41 @@ function changeHoursPage(hoursPage) {
 
   // if hours page = 1, display first hours page
   if (hoursPage === 1) {
-    document.querySelector('#current-hour-plus-1').style.display = 'block';
-    document.querySelector('#current-hour-plus-2').style.display = 'block';
-    document.querySelector('#current-hour-plus-3').style.display = 'block';
-    document.querySelector('#current-hour-plus-4').style.display = 'block';
-    document.querySelector('#current-hour-plus-5').style.display = 'block';
-    document.querySelector('#current-hour-plus-6').style.display = 'block';
-    document.querySelector('#current-hour-plus-7').style.display = 'block';
-    document.querySelector('#current-hour-plus-8').style.display = 'block';
+    document.querySelector('#current-hour-plus-1').style.display = 'flex';
+    document.querySelector('#current-hour-plus-2').style.display = 'flex';
+    document.querySelector('#current-hour-plus-3').style.display = 'flex';
+    document.querySelector('#current-hour-plus-4').style.display = 'flex';
+    document.querySelector('#current-hour-plus-5').style.display = 'flex';
+    document.querySelector('#current-hour-plus-6').style.display = 'flex';
+    document.querySelector('#current-hour-plus-7').style.display = 'flex';
+    document.querySelector('#current-hour-plus-8').style.display = 'flex';
 
     dot1.classList.add('dot-selected');
   }
   // if hours page = 2, display second hours page
   if (hoursPage === 2) {
-    document.querySelector('#current-hour-plus-9').style.display = 'block';
-    document.querySelector('#current-hour-plus-10').style.display = 'block';
-    document.querySelector('#current-hour-plus-11').style.display = 'block';
-    document.querySelector('#current-hour-plus-12').style.display = 'block';
-    document.querySelector('#current-hour-plus-13').style.display = 'block';
-    document.querySelector('#current-hour-plus-14').style.display = 'block';
-    document.querySelector('#current-hour-plus-15').style.display = 'block';
-    document.querySelector('#current-hour-plus-16').style.display = 'block';
+    document.querySelector('#current-hour-plus-9').style.display = 'flex';
+    document.querySelector('#current-hour-plus-10').style.display = 'flex';
+    document.querySelector('#current-hour-plus-11').style.display = 'flex';
+    document.querySelector('#current-hour-plus-12').style.display = 'flex';
+    document.querySelector('#current-hour-plus-13').style.display = 'flex';
+    document.querySelector('#current-hour-plus-14').style.display = 'flex';
+    document.querySelector('#current-hour-plus-15').style.display = 'flex';
+    document.querySelector('#current-hour-plus-16').style.display = 'flex';
 
     dot2.classList.add('dot-selected');
   }
 
   // if hours page = 3, display third hours page
   if (hoursPage === 3) {
-    document.querySelector('#current-hour-plus-17').style.display = 'block';
-    document.querySelector('#current-hour-plus-18').style.display = 'block';
-    document.querySelector('#current-hour-plus-19').style.display = 'block';
-    document.querySelector('#current-hour-plus-20').style.display = 'block';
-    document.querySelector('#current-hour-plus-21').style.display = 'block';
-    document.querySelector('#current-hour-plus-22').style.display = 'block';
-    document.querySelector('#current-hour-plus-23').style.display = 'block';
-    document.querySelector('#current-hour-plus-24').style.display = 'block';
+    document.querySelector('#current-hour-plus-17').style.display = 'flex';
+    document.querySelector('#current-hour-plus-18').style.display = 'flex';
+    document.querySelector('#current-hour-plus-19').style.display = 'flex';
+    document.querySelector('#current-hour-plus-20').style.display = 'flex';
+    document.querySelector('#current-hour-plus-21').style.display = 'flex';
+    document.querySelector('#current-hour-plus-22').style.display = 'flex';
+    document.querySelector('#current-hour-plus-23').style.display = 'flex';
+    document.querySelector('#current-hour-plus-24').style.display = 'flex';
 
     dot3.classList.add('dot-selected');
   }
