@@ -6,7 +6,7 @@ Search a location for forecast data.
 - Display data in metric or imperial units.
 - Unique weather symbols for each forecast description.
 
-Feature ideas to implement
+Feature ideas to implement.
 
 - Display user location by default.
 
