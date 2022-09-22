@@ -142,7 +142,7 @@ function renderWeatherDetails(data, units) {
   const humidity = document.querySelector('#humidity');
   humidity.textContent = `${data.current.humidity} %`;
   const chanceOfRain = document.querySelector('#chance-of-rain');
-  chanceOfRain.textContent = `${data.daily[0].pop} %`;
+  chanceOfRain.textContent = `${data.daily[0].pop *100} %`;
   const windSpeed = document.querySelector('#wind-speed');
   // round to 1 decimal place
   windSpeed.textContent = `${
